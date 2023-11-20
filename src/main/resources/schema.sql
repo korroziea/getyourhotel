@@ -17,8 +17,6 @@ CREATE TABLE Users
     password   VARCHAR(255) DEFAULT NULL,
     address    VARCHAR(255) DEFAULT NULL,
     phone      VARCHAR(20)  DEFAULT NULL,
---     title      VARCHAR(50)  DEFAULT NULL,
---     bio        VARCHAR(255)  DEFAULT NULL,
     enabled    BOOLEAN      DEFAULT FALSE,
     non_locked BOOLEAN      DEFAULT TRUE,
     using_mfa  BOOLEAN      DEFAULT FALSE,

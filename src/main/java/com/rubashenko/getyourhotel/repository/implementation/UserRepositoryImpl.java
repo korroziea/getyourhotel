@@ -48,7 +48,7 @@ public class UserRepositoryImpl implements UserRepository<User> {
             // send verification URL
             String verificationUrl = getVerificationUrl(UUID.randomUUID().toString(), ACCOUNT.getType());
             // save URL in verification table
-            jdbc.update(INSERT_ACCOUNT_VERIFICATION_URL_QUERY, of("userId", user.getId(), "url", verificationUrl));
+            jdbc.update(INSERT_ACCOUNT_VERIFICATION_URL_QUERY, of("user_id", user.getId(), "url", verificationUrl));
             // send email to user with verification URL
             //emailService.sendVerificationUrl(user.getFirstName(), user.getEmail(), verificationUrl, ACCOUNT);
             user.setEnabled(false);
@@ -57,6 +57,7 @@ public class UserRepositoryImpl implements UserRepository<User> {
             return user;
             // if any errors, throw exception with proper message
         } catch (Exception exception) {
+            log.error(exception.getMessage());
             throw new ApiException("An error occurred. Please try again.");
         }
     }
