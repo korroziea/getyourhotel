@@ -38,6 +38,19 @@ public class UserResource {
                      .build());
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<HttpResponse> login(@RequestBody @Valid User user) {
+        UserDTO userDTO = userService.findUser(user);
+        return ResponseEntity.created(getUri()).body(
+                HttpResponse.builder()
+                        .timeStamp(now().toString())
+                        .data(Map.of("user", userDTO))
+                        .message("Login completed successfully")
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
+                        .build());
+    }
+
     private URI getUri() {
         return URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/get/<userId>").toUriString());
     }

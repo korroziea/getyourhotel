@@ -68,8 +68,18 @@ public class UserRepositoryImpl implements UserRepository<User> {
     }
 
     @Override
-    public User get(Long id) {
-        return null;
+    public User get(User user) {
+        if (getEmailCount(user.getEmail().trim().toLowerCase()) == 0) throw new ApiException("You are not registered. To continue register your account");
+        if (!comparePasswords(user.getEmail(), user.getPassword())) throw new ApiException("Email or password are incorrect");
+
+        try {
+            User returnUser = new User();
+            returnUser.setEmail(user.getEmail());
+            return returnUser;
+        } catch (Exception exception) {
+            log.error(exception.getMessage());
+            throw new ApiException("An error occurred. Please try again.");
+        }
     }
 
     @Override
@@ -84,6 +94,11 @@ public class UserRepositoryImpl implements UserRepository<User> {
 
     private Integer getEmailCount(String email) {
         return jdbc.queryForObject(COUNT_USER_EMAIL_QUERY, of("email", email), Integer.class);
+    }
+
+    private Boolean comparePasswords(String email, String password) {
+        String userPassword = jdbc.queryForObject(SELECT_PASSWORD_CORRESPOND_EMAIL_QUERY, of("email", email), String.class);
+        return encoder.matches(password, userPassword);
     }
 
     private SqlParameterSource getSqlParameterSource(User user) {
