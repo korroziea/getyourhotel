@@ -20,3 +20,7 @@ spring:
     init:
       mode: never
       continue-on-error: false
+
+application:
+  title: getyourhotel
+  version: 1.0
