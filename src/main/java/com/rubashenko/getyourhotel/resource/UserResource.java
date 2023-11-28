@@ -1,17 +1,12 @@
 package com.rubashenko.getyourhotel.resource;
 
-import com.rubashenko.getyourhotel.domain.HttpResponse;
 import com.rubashenko.getyourhotel.domain.User;
 import com.rubashenko.getyourhotel.dto.UserDTO;
 import com.rubashenko.getyourhotel.service.UserService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -19,36 +14,38 @@ import java.util.Map;
 
 import static java.time.LocalDateTime.now;
 
-@RestController
+@Controller
 @RequestMapping(path = "/user")
 @RequiredArgsConstructor
+//@Slf4j
 public class UserResource {
     private final UserService userService;
 
+    @GetMapping("/new")
+    public String newUser(@ModelAttribute("user") User user) {
+        return "register";
+    }
+
     @PostMapping("/register")
-    public ResponseEntity<HttpResponse> saveUser(@RequestBody @Valid User user) {
+    public String saveUser(@ModelAttribute("user") User user) {
         UserDTO userDTO = userService.createUser(user);
-        return ResponseEntity.created(getUri()).body(
-             HttpResponse.builder()
-                     .timeStamp(now().toString())
-                     .data(Map.of("user", userDTO))
-                     .message("User created")
-                     .status(HttpStatus.CREATED)
-                     .statusCode(HttpStatus.CREATED.value())
-                     .build());
+        return "redirect:/user/auth";
+    }
+
+    @GetMapping("/auth")
+    public String auth(@ModelAttribute("user") User user) {
+        return "login";
     }
 
     @PostMapping("/login")
-    public ResponseEntity<HttpResponse> login(@RequestBody @Valid User user) {
+    public String login(@ModelAttribute("user") User user) {
         UserDTO userDTO = userService.findUser(user);
-        return ResponseEntity.created(getUri()).body(
-                HttpResponse.builder()
-                        .timeStamp(now().toString())
-                        .data(Map.of("user", userDTO))
-                        .message("Login completed successfully")
-                        .status(HttpStatus.OK)
-                        .statusCode(HttpStatus.OK.value())
-                        .build());
+        return "redirect:/user/hello";
+    }
+
+    @GetMapping("/hello")
+    public String greeting() {
+        return "hello";
     }
 
     private URI getUri() {

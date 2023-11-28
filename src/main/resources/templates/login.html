@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+<!--<p th:text="${user.getFirstName()}"></p>-->
+
+<form th:method="POST" th:action="@{/user/login}" th:object="${user}">
+    <label for="email"> Enter email: </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <br/>
+
+    <label for="password"> Enter password: </label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <br/>
+
+    <input type="submit" value="Sign in" />
+</form>
+</body>
+</html>

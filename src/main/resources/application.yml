@@ -20,6 +20,11 @@ spring:
     init:
       mode: never
       continue-on-error: false
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    cache: false
 
 application:
   title: getyourhotel
