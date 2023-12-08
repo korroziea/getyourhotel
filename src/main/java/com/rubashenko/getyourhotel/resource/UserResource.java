@@ -5,14 +5,12 @@ import com.rubashenko.getyourhotel.dto.UserDTO;
 import com.rubashenko.getyourhotel.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.Map;
-
-import static java.time.LocalDateTime.now;
 
 @Controller
 @RequestMapping(path = "/user")

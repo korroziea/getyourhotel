@@ -96,3 +96,19 @@ CREATE TABLE ResetPasswordVerifications
     CONSTRAINT UQ_ResetPasswordVerifications_User_Id UNIQUE (user_id),
     CONSTRAINT UQ_ResetPasswordVerifications_Url     UNIQUE (url)
 );
+
+DROP TABLE IF EXISTS Hotels;
+
+CREATE TABLE Hotels
+(
+    id              BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id         BIGINT UNSIGNED NOT NULL,
+    title           VARCHAR(50)     NOT NULL,
+    rating          DOUBLE          NOT NULL,
+    country         VARCHAR(50)     NOT NULL,
+    city            VARCHAR(50)     NOT NULL,
+    distance_to_sea DOUBLE          NOT NULL,
+    wifi            BOOLEAN         DEFAULT FALSE,
+    conditioner     BOOLEAN         DEFAULT FALSE,
+    FOREIGN KEY (user_id) REFERENCES Users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+)
