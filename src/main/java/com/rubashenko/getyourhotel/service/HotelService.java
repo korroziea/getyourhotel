@@ -1,8 +1,8 @@
 package com.rubashenko.getyourhotel.service;
 
-import com.rubashenko.getyourhotel.domain.Hotel;
+import com.rubashenko.getyourhotel.domain.Hotels;
 
 public interface HotelService {
-    Hotel createHotel(Hotel hotel);
-    Hotel findHotel(Long id);
+    Hotels createHotel(Hotels hotel);
+    Hotels findHotel(Hotels hotel);
 }

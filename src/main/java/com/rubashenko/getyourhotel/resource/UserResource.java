@@ -1,11 +1,9 @@
 package com.rubashenko.getyourhotel.resource;
 
-import com.rubashenko.getyourhotel.domain.User;
+import com.rubashenko.getyourhotel.domain.Users;
 import com.rubashenko.getyourhotel.dto.UserDTO;
 import com.rubashenko.getyourhotel.service.UserService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -20,23 +18,23 @@ public class UserResource {
     private final UserService userService;
 
     @GetMapping("/new")
-    public String newUser(@ModelAttribute("user") User user) {
+    public String newUser(@ModelAttribute("user") Users user) {
         return "register";
     }
 
     @PostMapping("/register")
-    public String saveUser(@ModelAttribute("user") User user) {
+    public String saveUser(@ModelAttribute("user") Users user) {
         UserDTO userDTO = userService.createUser(user);
         return "redirect:/user/auth";
     }
 
     @GetMapping("/auth")
-    public String auth(@ModelAttribute("user") User user) {
+    public String auth(@ModelAttribute("user") Users user) {
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("user") User user) {
+    public String login(@ModelAttribute("user") Users user) {
         UserDTO userDTO = userService.findUser(user);
         return "redirect:/user/hello";
     }

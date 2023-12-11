@@ -1,16 +1,8 @@
 package com.rubashenko.getyourhotel.repository;
 
-import com.rubashenko.getyourhotel.domain.User;
+import com.rubashenko.getyourhotel.domain.Users;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Collection;
-
-public interface UserRepository<T extends User> {
-    /* Basic CRUD Operations */
-    T create(T data);
-    Collection<T> list(int page, int pageSize);
-    T get(T data);
-    T update(T data);
-    Boolean delete(Long id);
-
-    /* More Complex Operations */
+public interface UserRepository extends JpaRepository<Users, Long> {
+    Users findUserByEmail(Users user);
 }

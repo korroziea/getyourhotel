@@ -1,6 +1,10 @@
 package com.rubashenko.getyourhotel.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -12,12 +16,15 @@ import java.time.LocalDateTime;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 
+@Entity
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(NON_DEFAULT)
-public class User {
+public class Users {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 //    @NotEmpty(message = "First name cannot be empty")
     private String firstName;
@@ -34,7 +41,7 @@ public class User {
 //    private String bio;
     private String imageUrl;
     private boolean enabled;
-    private boolean isNotLocked;
-    private boolean isUsingMfa;
+    private boolean nonLocked;
+    private boolean usingMfa;
     private LocalDateTime createdAt;
 }

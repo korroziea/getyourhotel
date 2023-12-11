@@ -1,13 +1,10 @@
 package com.rubashenko.getyourhotel.repository;
 
-import com.rubashenko.getyourhotel.domain.Hotel;
+import com.rubashenko.getyourhotel.domain.Hotels;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Collection;
 
-public interface HotelRepository<T extends Hotel> {
-    T create(T data);
-    Collection<T> list(int page, int pageSize);
-    T get(Long id);
-    T update(T data);
-    Boolean delete(Long id);
+public interface HotelRepository extends JpaRepository<Hotels, Long> {
+    Hotels findHotelByTitle(Hotels hotel);
 }

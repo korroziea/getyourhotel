@@ -1,12 +1,17 @@
 package com.rubashenko.getyourhotel.repository.implementation;
 
-import com.rubashenko.getyourhotel.domain.Role;
-import com.rubashenko.getyourhotel.domain.User;
+import com.rubashenko.getyourhotel.domain.Roles;
+import com.rubashenko.getyourhotel.domain.Users;
 import com.rubashenko.getyourhotel.exception.ApiException;
 import com.rubashenko.getyourhotel.repository.RoleRepository;
 import com.rubashenko.getyourhotel.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -16,8 +21,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Function;
 
 import static com.rubashenko.getyourhotel.enumeration.RoleType.ROLE_USER;
 import static com.rubashenko.getyourhotel.enumeration.VerificationType.ACCOUNT;
@@ -28,13 +35,13 @@ import static java.util.Objects.requireNonNull;
 @Repository
 @RequiredArgsConstructor
 @Slf4j
-public class UserRepositoryImpl implements UserRepository<User> {
+public class UserRepositoryImpl implements UserRepository {
     private final NamedParameterJdbcTemplate jdbc;
-    private final RoleRepository<Role> roleRepository;
+    private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder encoder;
 
     @Override
-    public User create(User user) {
+    public <S extends Users> S save(S user) {
         // check the email is unique
         if (getEmailCount(user.getEmail().trim().toLowerCase()) > 0) throw new ApiException("Email already in use. Please use a different email and try again");
         // save new user
@@ -52,7 +59,7 @@ public class UserRepositoryImpl implements UserRepository<User> {
             // send email to user with verification URL
             //emailService.sendVerificationUrl(user.getFirstName(), user.getEmail(), verificationUrl, ACCOUNT);
             user.setEnabled(false);
-            user.setNotLocked(true);
+            user.setNonLocked(true);
             // return the newly created user
             return user;
             // if any errors, throw exception with proper message
@@ -62,34 +69,18 @@ public class UserRepositoryImpl implements UserRepository<User> {
         }
     }
 
-    @Override
-    public Collection<User> list(int page, int pageSize) {
-        return null;
-    }
-
-    @Override
-    public User get(User user) {
+    public Users findUserByEmail(Users user) {
         if (getEmailCount(user.getEmail().trim().toLowerCase()) == 0) throw new ApiException("You are not registered. To continue register your account");
         if (!comparePasswords(user.getEmail(), user.getPassword())) throw new ApiException("Email or password are incorrect");
 
         try {
-            User returnUser = new User();
+            Users returnUser = new Users();
             returnUser.setEmail(user.getEmail());
             return returnUser;
         } catch (Exception exception) {
             log.error(exception.getMessage());
             throw new ApiException("An error occurred. Please try again.");
         }
-    }
-
-    @Override
-    public User update(User data) {
-        return null;
-    }
-
-    @Override
-    public Boolean delete(Long id) {
-        return null;
     }
 
     private Integer getEmailCount(String email) {
@@ -101,7 +92,7 @@ public class UserRepositoryImpl implements UserRepository<User> {
         return encoder.matches(password, userPassword);
     }
 
-    private SqlParameterSource getSqlParameterSource(User user) {
+    private SqlParameterSource getSqlParameterSource(Users user) {
         return new MapSqlParameterSource()
                 .addValue("firstName", user.getFirstName())
                 .addValue("lastName", user.getLastName())
@@ -111,5 +102,150 @@ public class UserRepositoryImpl implements UserRepository<User> {
 
     private String getVerificationUrl(String key, String type) {
         return ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/verify" + type + "/" + key).toUriString();
+    }
+
+    @Override
+    public void flush() {
+
+    }
+
+    @Override
+    public <S extends Users> S saveAndFlush(S entity) {
+        return null;
+    }
+
+    @Override
+    public <S extends Users> List<S> saveAllAndFlush(Iterable<S> entities) {
+        return null;
+    }
+
+    @Override
+    public void deleteAllInBatch(Iterable<Users> entities) {
+
+    }
+
+    @Override
+    public void deleteAllByIdInBatch(Iterable<Long> longs) {
+
+    }
+
+    @Override
+    public void deleteAllInBatch() {
+
+    }
+
+    @Override
+    public Users getOne(Long aLong) {
+        return null;
+    }
+
+    @Override
+    public Users getById(Long aLong) {
+        return null;
+    }
+
+    @Override
+    public Users getReferenceById(Long aLong) {
+        return null;
+    }
+
+    @Override
+    public <S extends Users> Optional<S> findOne(Example<S> example) {
+        return Optional.empty();
+    }
+
+    @Override
+    public <S extends Users> List<S> findAll(Example<S> example) {
+        return null;
+    }
+
+    @Override
+    public <S extends Users> List<S> findAll(Example<S> example, Sort sort) {
+        return null;
+    }
+
+    @Override
+    public <S extends Users> Page<S> findAll(Example<S> example, Pageable pageable) {
+        return null;
+    }
+
+    @Override
+    public <S extends Users> long count(Example<S> example) {
+        return 0;
+    }
+
+    @Override
+    public <S extends Users> boolean exists(Example<S> example) {
+        return false;
+    }
+
+    @Override
+    public <S extends Users, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+        return null;
+    }
+
+    @Override
+    public <S extends Users> List<S> saveAll(Iterable<S> entities) {
+        return null;
+    }
+
+    @Override
+    public Optional<Users> findById(Long aLong) {
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean existsById(Long aLong) {
+        return false;
+    }
+
+    @Override
+    public List<Users> findAll() {
+        return null;
+    }
+
+    @Override
+    public List<Users> findAllById(Iterable<Long> longs) {
+        return null;
+    }
+
+    @Override
+    public long count() {
+        return 0;
+    }
+
+    @Override
+    public void deleteById(Long aLong) {
+
+    }
+
+    @Override
+    public void delete(Users entity) {
+
+    }
+
+    @Override
+    public void deleteAllById(Iterable<? extends Long> longs) {
+
+    }
+
+    @Override
+    public void deleteAll(Iterable<? extends Users> entities) {
+
+    }
+
+    @Override
+    public void deleteAll() {
+
+    }
+
+    @Override
+    public List<Users> findAll(Sort sort) {
+        return null;
+    }
+
+    @Override
+    public Page<Users> findAll(Pageable pageable) {
+        return null;
     }
 }
