@@ -6,6 +6,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/hotel_list.css}">
 </head>
 <body>
+<div class="navbar">
+    <h1>getyourhotel</h1>
+</div>
 <div class="hotel-container">
     <div th:each="hotel : ${hotels}" class="hotel-item">
         <a th:href="@{'/hotel/' + ${hotel.id}}">
