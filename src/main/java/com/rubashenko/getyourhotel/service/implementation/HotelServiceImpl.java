@@ -28,4 +28,20 @@ public class HotelServiceImpl implements HotelService {
     public List<Hotels> showAllHotels() {
         return hotelRepository.findAll();
     }
+
+    @Override
+    public Hotels showOneHotel(Long id) {
+        return hotelRepository.findHotelById(id);
+    }
+
+    @Override
+    public void updateHotel(Long id, Hotels updatedHotel) {
+        hotelRepository.updateHotelById(id, updatedHotel.getTitle(), updatedHotel.getRating(), updatedHotel.getCountry(),
+                updatedHotel.getCity(), updatedHotel.getDistanceToSea(), updatedHotel.getWifi(), updatedHotel.getConditioner());
+    }
+
+    @Override
+    public void deleteHotel(Long id) {
+        hotelRepository.deleteById(id);
+    }
 }

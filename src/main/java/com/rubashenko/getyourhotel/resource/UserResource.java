@@ -36,15 +36,11 @@ public class UserResource {
     @PostMapping("/login")
     public String login(@ModelAttribute("user") Users user) {
         UserDTO userDTO = userService.findUser(user);
-        return "redirect:/user/hello";
+        return "redirect:/hotel";
     }
 
     @GetMapping("/hello")
     public String greeting() {
         return "hello";
-    }
-
-    private URI getUri() {
-        return URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/user/get/<userId>").toUriString());
     }
 }

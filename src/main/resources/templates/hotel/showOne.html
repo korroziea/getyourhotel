@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/hotel_one.css}">
+    <title>Show Hotel</title>
+</head>
+<body>
+<div class="hotel-details">
+    <h1 th:text="${hotel.title}"></h1>
+    <p th:text="${hotel.country + ', ' + hotel.city}"></p>
+
+    <div class="update-delete-links">
+        <a class="update-link" th:href="@{/hotel/{id}/edit(id=${hotel.id})}">Edit</a>
+        <a class="delete-link" th:href="@{/hotel/{id}/delete(id=${hotel.id})}">Delete</a>
+    </div>
+</div>
+</body>
+</html>

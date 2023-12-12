@@ -6,25 +6,21 @@ body {
     align-items: center;
 }
 
-.hotel-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    max-width: 80%;
-    margin: 0 auto;
-}
-
-.hotel-item {
+.hotel-details {
     background-color: #f2f2f2;
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 1000px;
-    height: 200px;
+    width: 80%;
     box-sizing: border-box;
+    position: relative;
+}
+
+.update-delete-links {
+    position: absolute;
+    top: 10px;
+    right: 20px;
 }
 
 a {
@@ -49,5 +45,11 @@ a:active {
 
 /* Стиль для ссылок при наведении */
 a:hover {
+    color: black;
+}
+
+.update-link, .delete-link {
+    font-size: small;
+    margin-left: 10px;
     color: black;
 }

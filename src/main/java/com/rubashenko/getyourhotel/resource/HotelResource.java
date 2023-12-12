@@ -33,9 +33,29 @@ public class HotelResource {
         return "hotel/showAll";
     }
 
-//    @GetMapping("/{id}")
-//    public String show(@PathVariable("id") Long id, Model model) {
-//        model.addAttribute("hotel", hotelService.findHotel(id));
-//        return "hotel/show";
-//    }
+    @GetMapping("/{id}")
+    public String showHotel(@PathVariable("id") Long id, Model model) {
+        Hotels hotel = hotelService.showOneHotel(id);
+        model.addAttribute("hotel", hotel);
+        return "hotel/showOne";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editHotelForm(@PathVariable("id") Long id, Model model) {
+        Hotels hotel = hotelService.showOneHotel(id);
+        model.addAttribute("hotel", hotel);
+        return "hotel/edit";
+    }
+
+    @PostMapping("/{id}/update")
+    public String updateHotel(@PathVariable("id") Long id, @ModelAttribute("hotel") Hotels updatedHotel) {
+        hotelService.updateHotel(id, updatedHotel);
+        return "redirect:/hotel/" + id;
+    }
+
+    @GetMapping("/{id}/delete")
+    public String deleteHotel(@PathVariable("id") Long id) {
+        hotelService.deleteHotel(id);
+        return "redirect:/hotel";
+    }
 }

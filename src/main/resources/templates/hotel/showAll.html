@@ -8,7 +8,9 @@
 <body>
 <div class="hotel-container">
     <div th:each="hotel : ${hotels}" class="hotel-item">
-        <h3 th:text="${hotel.title}"></h3>
+        <a th:href="@{'/hotel/' + ${hotel.id}}">
+            <h3 th:text="${hotel.title}"></h3>
+        </a>
         <p th:text="${hotel.country + ', ' + hotel.city}"></p>
     </div>
 </div>
