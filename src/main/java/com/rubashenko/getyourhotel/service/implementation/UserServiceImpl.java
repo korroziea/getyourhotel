@@ -20,6 +20,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO findUser(Users user) {
-        return UserDTOMapper.fromUser(userRepository.findUserByEmail(user));
+        return UserDTOMapper.fromUser(userRepository.findUserByEmailAndPassword(user.getEmail(), user.getPassword()));
     }
 }

@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Collection;
 
 public interface HotelRepository extends JpaRepository<Hotels, Long> {
-    Hotels findHotelByTitle(Hotels hotel);
+    Hotels findHotelByTitle(String title);
 }

@@ -19,7 +19,7 @@ public class UserResource {
 
     @GetMapping("/new")
     public String newUser(@ModelAttribute("user") Users user) {
-        return "register";
+        return "user/register";
     }
 
     @PostMapping("/register")
@@ -30,7 +30,7 @@ public class UserResource {
 
     @GetMapping("/auth")
     public String auth(@ModelAttribute("user") Users user) {
-        return "login";
+        return "user/login";
     }
 
     @PostMapping("/login")

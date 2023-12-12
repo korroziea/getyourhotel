@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,16 +27,16 @@ public class Hotels {
     private Long user_id;
     @NotEmpty(message = "Title cannot be empty")
     private String title;
-    @NotEmpty(message = "Rating cannot be empty")
+    @NotNull(message = "Rating cannot be empty")
     private Double rating;
     @NotEmpty(message = "Country cannot be empty")
     private String country;
     @NotEmpty(message = "City cannot be empty")
     private String city;
-    @NotEmpty(message = "Distance to the sea cannot be empty")
+    @NotNull(message = "Distance to the sea cannot be empty")
     private Double distanceToSea;
-    @NotEmpty(message = "Wi-Fi cannot be empty")
+    @NotNull(message = "Wi-Fi cannot be empty")
     private Boolean wifi;
-    @NotEmpty(message = "Conditioner cannot be empty")
+    @NotNull(message = "Conditioner cannot be empty")
     private Boolean conditioner;
 }

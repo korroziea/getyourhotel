@@ -13,11 +13,12 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public Hotels createHotel(Hotels hotel) {
+        hotel.setUser_id(6L);
         return hotelRepository.save(hotel);
     }
 
     @Override
     public Hotels findHotel(Hotels hotel) {
-        return hotelRepository.findHotelByTitle(hotel);
+        return hotelRepository.findHotelByTitle(hotel.getTitle());
     }
 }

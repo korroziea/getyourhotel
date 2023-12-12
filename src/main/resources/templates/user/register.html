@@ -10,19 +10,19 @@
     <h2>Sign Up</h2>
     <form th:method="POST" th:action="@{/user/register}" th:object="${user}">
         <label for="firstName"> Enter first name: </label>
-        <input type="text" th:field="*{firstName}" id="firstName"/>
+        <input type="text" th:field="*{firstName}" id="firstName" required/>
         <br/>
 
         <label for="lastName"> Enter your surname: </label>
-        <input type="text" th:field="*{lastName}" id="lastName"/>
+        <input type="text" th:field="*{lastName}" id="lastName" required/>
         <br/>
 
         <label for="email"> Enter email: </label>
-        <input type="text" th:field="*{email}" id="email"/>
+        <input type="text" th:field="*{email}" id="email" required/>
         <br/>
 
         <label for="password"> Enter password: </label>
-        <input type="password" th:field="*{password}" id="password"/>
+        <input type="password" th:field="*{password}" id="password" required/>
         <br/>
 
         <input type="submit" value="Sign up" />
