@@ -4,7 +4,10 @@ import com.rubashenko.getyourhotel.domain.Hotels;
 import com.rubashenko.getyourhotel.service.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/hotel")
@@ -21,6 +24,13 @@ public class HotelResource {
     public String saveHotel(@ModelAttribute("hotel") Hotels hotel) {
         Hotels hotelDTO = hotelService.createHotel(hotel);
         return "hello"; // check
+    }
+
+    @GetMapping()
+    public String showHotels(Model model) {
+        List<Hotels> hotels = hotelService.showAllHotels();
+        model.addAttribute("hotels", hotels);
+        return "hotel/showAll";
     }
 
 //    @GetMapping("/{id}")

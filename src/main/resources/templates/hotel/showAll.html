@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Hotels</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/hotel_list.css}">
+</head>
+<body>
+<div class="hotel-container">
+    <div th:each="hotel : ${hotels}" class="hotel-item">
+        <h3 th:text="${hotel.title}"></h3>
+        <p th:text="${hotel.country + ', ' + hotel.city}"></p>
+    </div>
+</div>
+</body>
+</html>

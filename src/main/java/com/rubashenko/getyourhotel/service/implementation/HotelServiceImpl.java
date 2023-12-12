@@ -6,6 +6,8 @@ import com.rubashenko.getyourhotel.service.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class HotelServiceImpl implements HotelService {
@@ -20,5 +22,10 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public Hotels findHotel(Hotels hotel) {
         return hotelRepository.findHotelByTitle(hotel.getTitle());
+    }
+
+    @Override
+    public List<Hotels> showAllHotels() {
+        return hotelRepository.findAll();
     }
 }
