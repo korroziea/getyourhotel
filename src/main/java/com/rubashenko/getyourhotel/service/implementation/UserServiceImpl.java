@@ -1,6 +1,6 @@
 package com.rubashenko.getyourhotel.service.implementation;
 
-import com.rubashenko.getyourhotel.domain.Users;
+import com.rubashenko.getyourhotel.domain.User;
 import com.rubashenko.getyourhotel.dto.UserDTO;
 import com.rubashenko.getyourhotel.dtomapper.UserDTOMapper;
 import com.rubashenko.getyourhotel.repository.UserRepository;
@@ -14,12 +14,12 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDTO createUser(Users user) {
+    public UserDTO createUser(User user) {
         return UserDTOMapper.fromUser(userRepository.save(user));
     }
 
     @Override
-    public UserDTO findUser(Users user) {
+    public UserDTO findUser(User user) {
         return UserDTOMapper.fromUser(userRepository.findUserByEmailAndPassword(user.getEmail(), user.getPassword()));
     }
 }

@@ -20,7 +20,9 @@ body {
     top: 0;
 }
 
-.navbar h1 {
+.navbar h1 a {
+    color: white;
+    text-decoration: none;
     margin-left: 30px;
 }
 
@@ -33,4 +35,41 @@ body {
     width: 80%;
     box-sizing: border-box;
     margin-top: 108px;
+}
+
+.update-delete-links {
+    position: absolute;
+    top: 135px;
+    right: 190px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+/* Стиль для неотображенных ссылок */
+a:link {
+    color: black;
+}
+
+/* Стиль для посещенных ссылок */
+a:visited {
+    color: black;
+}
+
+/* Стиль для активных (при нажатии) ссылок */
+a:active {
+    color: black;
+}
+
+/* Стиль для ссылок при наведении */
+a:hover {
+    color: black;
+}
+
+.update-link, .delete-link {
+    font-size: small;
+    margin-left: 10px;
+    color: black;
 }

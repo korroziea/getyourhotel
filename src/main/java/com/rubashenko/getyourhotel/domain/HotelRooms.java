@@ -1,10 +1,9 @@
 package com.rubashenko.getyourhotel.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,15 +12,21 @@ import lombok.experimental.SuperBuilder;
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 
 @Entity
+@Table(name = "hotelrooms")
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(NON_DEFAULT)
-public class Roles {
+public class HotelRooms {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String permission;
+    private Long hotel_id;
+    private Integer rooms_number;
+    private Integer bathrooms_number;
+    private Boolean loggia;
+    private Boolean balcony;
+    private Boolean vault;
+    private Boolean fridge;
 }

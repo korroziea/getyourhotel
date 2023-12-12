@@ -1,14 +1,14 @@
 package com.rubashenko.getyourhotel.service;
 
-import com.rubashenko.getyourhotel.domain.Hotels;
+import com.rubashenko.getyourhotel.domain.Hotel;
 
 import java.util.List;
 
 public interface HotelService {
-    Hotels createHotel(Hotels hotel);
-    Hotels findHotel(Hotels hotel);
-    List<Hotels> showAllHotels();
-    Hotels showOneHotel(Long id);
-    void updateHotel(Long id, Hotels updatedHotel);
+    Hotel createHotel(Hotel hotel);
+    Hotel findHotel(Hotel hotel);
+    List<Hotel> showAllHotels();
+    Hotel showOneHotel(Long id);
+    void updateHotel(Long id, Hotel updatedHotel);
     void deleteHotel(Long id);
 }

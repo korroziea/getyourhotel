@@ -1,6 +1,6 @@
 package com.rubashenko.getyourhotel.service.implementation;
 
-import com.rubashenko.getyourhotel.domain.Hotels;
+import com.rubashenko.getyourhotel.domain.Hotel;
 import com.rubashenko.getyourhotel.repository.HotelRepository;
 import com.rubashenko.getyourhotel.service.HotelService;
 import lombok.RequiredArgsConstructor;
@@ -14,28 +14,28 @@ public class HotelServiceImpl implements HotelService {
     private final HotelRepository hotelRepository;
 
     @Override
-    public Hotels createHotel(Hotels hotel) {
+    public Hotel createHotel(Hotel hotel) {
         hotel.setUser_id(6L);
         return hotelRepository.save(hotel);
     }
 
     @Override
-    public Hotels findHotel(Hotels hotel) {
+    public Hotel findHotel(Hotel hotel) {
         return hotelRepository.findHotelByTitle(hotel.getTitle());
     }
 
     @Override
-    public List<Hotels> showAllHotels() {
+    public List<Hotel> showAllHotels() {
         return hotelRepository.findAll();
     }
 
     @Override
-    public Hotels showOneHotel(Long id) {
+    public Hotel showOneHotel(Long id) {
         return hotelRepository.findHotelById(id);
     }
 
     @Override
-    public void updateHotel(Long id, Hotels updatedHotel) {
+    public void updateHotel(Long id, Hotel updatedHotel) {
         hotelRepository.updateHotelById(id, updatedHotel.getTitle(), updatedHotel.getRating(), updatedHotel.getCountry(),
                 updatedHotel.getCity(), updatedHotel.getDistanceToSea(), updatedHotel.getWifi(), updatedHotel.getConditioner());
     }

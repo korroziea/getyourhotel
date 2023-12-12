@@ -19,7 +19,9 @@ body {
     align-items: center;
 }
 
-.navbar h1 {
+.navbar h1 a {
+    color: white;  /* Цвет белый для ссылки внутри .navbar h1 */
+    text-decoration: none;
     margin-left: 30px;
 }
 
@@ -44,11 +46,7 @@ body {
     box-sizing: border-box;
 }
 
-a {
-    color: black;
+.hotel-item a {
+    color: black;  /* Цвет черный для ссылок внутри .hotel-item */
     text-decoration: none;
-}
-
-a:link, a:visited, a:active, a:hover {
-    color: black;
 }
