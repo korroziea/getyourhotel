@@ -21,6 +21,7 @@ public class HotelRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long hotel_id;
+    private String title;
     private Integer rooms_number;
     private Integer bathrooms_number;
     private Boolean loggia;

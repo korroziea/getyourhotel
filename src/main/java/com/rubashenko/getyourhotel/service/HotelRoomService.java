@@ -9,6 +9,7 @@ public interface HotelRoomService {
 //    List<HotelRoom> showAllHotelRooms(Long hotel_id);
     List<HotelRoom> showAllHotelRooms();
     HotelRoom showOneHotelRoom(Long id);
+    HotelRoom findHotelRoomByTitle(String title);
     void updateHotelRoom(Long id, HotelRoom updatedHotel);
     void deleteHotelRoom(Long id);
 }

@@ -10,27 +10,27 @@
     <h2>Create Room</h2>
     <form th:method="POST" th:action="@{/hotel/{hotel_id}/create(hotel_id=${hotelRoom.hotel_id})}" th:object="${hotelRoom}">
         <label for="rooms_number"> Enter the number of rooms: </label>
-        <input type="text" th:field="*{rooms_number}" id="rooms_number" required/>
+        <input type="text" th:field="*{rooms_number}" id="rooms_number" th:value="${hotelRoom.rooms_number}" required/>
         <br/>
 
         <label for="bathrooms_number"> Enter the number of bathrooms: </label>
-        <input type="text" th:field="*{bathrooms_number}" id="bathrooms_number" required/>
+        <input type="text" th:field="*{bathrooms_number}" id="bathrooms_number" th:value="${hotelRoom.bathrooms_number}" required/>
         <br/>
 
         <label for="loggia"> Has loggia: </label>
-        <input type="checkbox" th:field="*{loggia}" id="loggia" />
+        <input type="checkbox" th:field="*{loggia}" th:value="${hotelRoom.loggia}" id="loggia" />
         <br/>
 
         <label for="balcony"> Has balcony: </label>
-        <input type="checkbox" th:field="*{balcony}" id="balcony" />
+        <input type="checkbox" th:field="*{balcony}" th:value="${hotelRoom.balcony}" id="balcony" />
         <br/>
 
         <label for="vault"> Has vault: </label>
-        <input type="checkbox" th:field="*{vault}" id="vault" />
+        <input type="checkbox" th:field="*{vault}" th:value="${hotelRoom.vault}" id="vault" />
         <br/>
 
         <label for="fridge"> Has fridge: </label>
-        <input type="checkbox" th:field="*{fridge}" id="fridge" />
+        <input type="checkbox" th:field="*{fridge}" th:value="${hotelRoom.fridge}" id="fridge" />
         <br/>
 
         <input type="submit" value="Create Room" />

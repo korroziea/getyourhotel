@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Room</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/hotel_form.css}">
+</head>
+<body>
+<div class="container">
+  <h2>Edit Room</h2>
+  <form th:method="POST" th:action="@{/hotel/{hotel_id}/room/{id}/update(hotel_id=${hotelRoom.hotel_id}, id=${hotelRoom.id})}" th:object="${hotelRoom}">
+    <label for="rooms_number"> Enter the number of rooms: </label>
+    <input type="text" th:field="*{rooms_number}" id="rooms_number" required/>
+    <br/>
+
+    <label for="bathrooms_number"> Enter the number of bathrooms: </label>
+    <input type="text" th:field="*{bathrooms_number}" id="bathrooms_number" required/>
+    <br/>
+
+    <label for="loggia"> Has loggia: </label>
+    <input type="checkbox" th:field="*{loggia}" id="loggia" />
+    <br/>
+
+    <label for="balcony"> Has balcony: </label>
+    <input type="checkbox" th:field="*{balcony}" id="balcony" />
+    <br/>
+
+    <label for="vault"> Has vault: </label>
+    <input type="checkbox" th:field="*{vault}" id="vault" />
+    <br/>
+
+    <label for="fridge"> Has fridge: </label>
+    <input type="checkbox" th:field="*{fridge}" id="fridge" />
+    <br/>
+
+    <input type="submit" value="Edit Room" />
+  </form>
+</div>
+</body>
+</html>

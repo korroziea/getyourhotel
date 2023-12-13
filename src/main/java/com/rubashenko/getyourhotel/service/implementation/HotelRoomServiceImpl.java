@@ -34,6 +34,11 @@ public class HotelRoomServiceImpl implements HotelRoomService {
     }
 
     @Override
+    public HotelRoom findHotelRoomByTitle(String title) {
+        return hotelRoomRepository.findHotelRoomsByTitle(title);
+    }
+
+    @Override
     public void updateHotelRoom(Long id, HotelRoom updatedHotelRoom) {
         hotelRoomRepository.updateHotelRoomsById(id, updatedHotelRoom.getRooms_number(), updatedHotelRoom.getBathrooms_number(),
                 updatedHotelRoom.getLoggia(), updatedHotelRoom.getBalcony(), updatedHotelRoom.getVault(), updatedHotelRoom.getFridge());

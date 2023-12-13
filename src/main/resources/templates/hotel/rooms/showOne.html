@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/hotel_one.css}">
+  <title>Show Hotel Room</title>
+</head>
+<body>
+<div class="navbar">
+  <h1><a th:href="@{/hotel}">getyourhotel</a></h1>
+</div>
+<div class="hotel-details">
+  <h3 th:text="${hotelRoom.rooms_number + ', ' + hotelRoom.bathrooms_number}"></h3>
+  <p th:text="${hotelRoom.vault + ', ' + hotelRoom.balcony}"></p>
+
+  <div class="update-delete-links">
+    <a class="update-link" th:href="@{/hotel/{hotel_id}/room/{id}/edit(hotel_id=${hotelRoom.hotel_id}, id=${hotelRoom.id})}">Edit</a>
+    <a class="delete-link" th:href="@{/hotel/{hotel_id}/room/{id}/delete(hotel_id=${hotelRoom.hotel_id}, id=${hotelRoom.id})}">Delete</a>
+  </div>
+</div>
+</body>
+</html>

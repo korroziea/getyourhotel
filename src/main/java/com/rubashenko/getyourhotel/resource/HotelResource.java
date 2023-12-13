@@ -38,8 +38,9 @@ public class HotelResource {
     @GetMapping("/search/{title}")
     public String searchHotelByTitle(@PathVariable("title") String title, Model model) {
         Hotel hotel = hotelService.findHotelByTitle(title);
+        Long id = hotel.getId();
         model.addAttribute("hotel", hotel);
-        return "hotel/showOne";
+        return "redirect:/hotel/" + id;
     }
 
     @GetMapping("/{id}")
