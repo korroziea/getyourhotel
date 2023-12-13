@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>List of Users</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/hotel_list.css}">
+</head>
+<body>
+<div class="navbar">
+  <h1><a th:href="@{/hotel}">getyourhotel</a></h1>
+<!--  <div class="search-container">-->
+<!--    <input type="text" id="searchInput" placeholder="Search...">-->
+<!--    <button onclick="search()">Search</button>-->
+<!--  </div>-->
+</div>
+<div class="hotel-container">
+  <div th:each="user : ${users}" class="hotel-item">
+    <a th:href="@{'/user/' + ${user.id}}">
+      <h3 th:text="${user.firstName + ', ' + user.lastName}"></h3>
+    </a>
+    <p th:text="${user.email}"></p>
+  </div>
+</div>
+
+<!--<script>-->
+<!--  function search() {-->
+<!--    var input = document.getElementById('searchInput').value;-->
+
+<!--    // Отправка запроса на сервер для выполнения поиска-->
+<!--    fetch('/hotel/search/' + input)-->
+<!--            .then(data => {-->
+<!--              // Обработка результатов поиска (data)-->
+<!--              console.log(data);-->
+<!--              // Вставьте код для обновления отображаемых данных-->
+<!--              window.location.href = '/hotel/search/' + input-->
+<!--            })-->
+<!--            .catch(error => {-->
+<!--              console.error('Error during search:', error);-->
+<!--            });-->
+<!--  }-->
+<!--</script>-->
+
+</body>
+</html>

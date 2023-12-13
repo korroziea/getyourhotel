@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/hotel_one.css}">
+    <title>Show User</title>
+</head>
+<body>
+<div class="navbar">
+    <h1><a th:href="@{/hotel}">getyourhotel</a></h1>
+</div>
+<div class="hotel-details">
+    <h3 th:text="${userDTO.firstName + ', ' + userDTO.lastName}"></h3>
+    <p th:text="${userDTO.email}"></p>
+
+    <div class="update-delete-links">
+        <a class="update-link" th:href="@{/user/{id}/edit(id=${userDTO.id})}">Edit</a>
+        <a class="delete-link" th:href="@{/user/{id}/delete(id=${userDTO.id})}">Delete</a>
+    </div>
+</div>
+</body>
+</html>

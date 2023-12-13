@@ -8,6 +8,8 @@ import com.rubashenko.getyourhotel.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -21,5 +23,30 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO findUser(User user) {
         return UserDTOMapper.fromUser(userRepository.findUserByEmailAndPassword(user.getEmail(), user.getPassword()));
+    }
+
+    @Override
+    public UserDTO findUserByEmail(String email) {
+        return UserDTOMapper.fromUser(userRepository.findUserByEmail(email));
+    }
+
+    @Override
+    public UserDTO showOneUser(Long id) {
+        return UserDTOMapper.fromUser(userRepository.findUserById(id));
+    }
+
+    @Override
+    public List<User> showAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void updateUser(Long id, User updatedUser) {
+        userRepository.updateUserById(id, updatedUser.getFirstName(), updatedUser.getLastName());
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
     }
 }

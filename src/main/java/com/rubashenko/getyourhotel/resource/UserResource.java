@@ -1,11 +1,16 @@
 package com.rubashenko.getyourhotel.resource;
 
+import com.rubashenko.getyourhotel.domain.Hotel;
+import com.rubashenko.getyourhotel.domain.HotelRoom;
 import com.rubashenko.getyourhotel.domain.User;
 import com.rubashenko.getyourhotel.dto.UserDTO;
 import com.rubashenko.getyourhotel.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/user")
@@ -36,8 +41,44 @@ public class UserResource {
         return "redirect:/hotel";
     }
 
-    @GetMapping("/hello")
-    public String greeting() {
-        return "hello";
+    @GetMapping()
+    public String showUsers(Model model) {
+        List<User> users = userService.showAllUsers();
+        model.addAttribute("users", users);
+        return "user/showAll";
+    }
+
+    @GetMapping("/{id}")
+    public String searchUserById(@PathVariable("id") Long id, Model model, @ModelAttribute("User") User user) {
+        UserDTO userDTO = userService.showOneUser(id);
+        model.addAttribute("userDTO", userDTO);
+        return "user/showOne";
+    }
+
+    @GetMapping("/search/{email}")
+    public String searchUserByEmail(@PathVariable("email") String email, Model model) {
+        UserDTO userDTO = userService.findUserByEmail(email);
+        Long id = userDTO.getId();
+        model.addAttribute("userDTO", userDTO);
+        return "redirect:/user/" + id;
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editUserForm(@PathVariable("id") Long id, Model model) {
+        UserDTO userDTO = userService.showOneUser(id);
+        model.addAttribute("userDTO", userDTO);
+        return "user/edit";
+    }
+
+    @PostMapping("/{id}/update")
+    public String updateUser(@PathVariable("id") Long id, @ModelAttribute("User") User updatedUser) {
+        userService.updateUser(id, updatedUser);
+        return "redirect:/user/" + id;
+    }
+
+    @GetMapping("/{id}/delete")
+    public String deleteUser(@PathVariable("id") Long id) {
+        userService.deleteUser(id);
+        return "redirect:/user";
     }
 }
