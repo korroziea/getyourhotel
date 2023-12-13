@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Review</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/hotel_form.css}">
+</head>
+<body>
+<h2>Create New Review</h2>
+
+<form method="POST" th:action="@{/hotel/{hotel_id}/review/create(hotel_id=${review.hotel_id})}" th:object="${review}">
+    <label for="message">Message:</label>
+    <input type="text" th:field="*{message}" id="message" required/>
+    <br/>
+
+    <input type="submit" value="Post Review"/>
+</form>
+</body>
+</html>
