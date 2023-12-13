@@ -23,7 +23,7 @@ public class HotelResource {
     @PostMapping("/create")
     public String saveHotel(@ModelAttribute("hotel") Hotel hotel) {
         Hotel hotelDTO = hotelService.createHotel(hotel);
-        return "hello"; // check
+        return "redirect:hotel/show";
     }
 
     @GetMapping()
@@ -33,8 +33,15 @@ public class HotelResource {
         return "hotel/showAll";
     }
 
+    @GetMapping("/search/{title}")
+    public String searchHotelByTitle(@PathVariable("title") String title, Model model) {
+        Hotel hotel = hotelService.findHotelByTitle(title);
+        model.addAttribute("hotel", hotel);
+        return "hotel/showOne";
+    }
+
     @GetMapping("/{id}")
-    public String showHotel(@PathVariable("id") Long id, Model model) {
+    public String searchHotelById(@PathVariable("id") Long id, Model model) {
         Hotel hotel = hotelService.showOneHotel(id);
         model.addAttribute("hotel", hotel);
         return "hotel/showOne";

@@ -20,8 +20,8 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Hotel findHotel(Hotel hotel) {
-        return hotelRepository.findHotelByTitle(hotel.getTitle());
+    public Hotel findHotelByTitle(String title) {
+        return hotelRepository.findHotelByTitle(title);
     }
 
     @Override

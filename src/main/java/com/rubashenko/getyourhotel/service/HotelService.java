@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface HotelService {
     Hotel createHotel(Hotel hotel);
-    Hotel findHotel(Hotel hotel);
+    Hotel findHotelByTitle(String title);
     List<Hotel> showAllHotels();
     Hotel showOneHotel(Long id);
     void updateHotel(Long id, Hotel updatedHotel);

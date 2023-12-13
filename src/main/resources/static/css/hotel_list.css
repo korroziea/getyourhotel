@@ -50,3 +50,13 @@ body {
     color: black;  /* Цвет черный для ссылок внутри .hotel-item */
     text-decoration: none;
 }
+
+/* Добавьте этот стиль в ваш файл стилей */
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    margin-right: 10px;
+}
