@@ -1,6 +1,8 @@
 package com.rubashenko.getyourhotel.resource;
 
 import com.rubashenko.getyourhotel.domain.Hotel;
+import com.rubashenko.getyourhotel.domain.HotelRoom;
+import com.rubashenko.getyourhotel.service.HotelRoomService;
 import com.rubashenko.getyourhotel.service.HotelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -41,8 +43,9 @@ public class HotelResource {
     }
 
     @GetMapping("/{id}")
-    public String searchHotelById(@PathVariable("id") Long id, Model model) {
+    public String searchHotelById(@PathVariable("id") Long id, Model model, @ModelAttribute("hotelRoom") HotelRoom hotelRoom) {
         Hotel hotel = hotelService.showOneHotel(id);
+        hotelRoom.setHotel_id(id);
         model.addAttribute("hotel", hotel);
         return "hotel/showOne";
     }

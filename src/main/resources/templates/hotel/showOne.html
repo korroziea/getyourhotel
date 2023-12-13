@@ -13,6 +13,11 @@
     <h1 th:text="${hotel.title}"></h1>
     <p th:text="${hotel.country + ', ' + hotel.city}"></p>
 
+    <div class="room-links">
+        <a class="create-link" th:href="@{/hotel/{hotel_id}/new(hotel_id=${hotelRoom.hotel_id})}">Create room</a>
+        <a class="create-link" th:href="@{/hotel/{hotel_id}/room(hotel_id=${hotelRoom.hotel_id})}">Show all rooms</a>
+    </div>
+
     <div class="update-delete-links">
         <a class="update-link" th:href="@{/hotel/{id}/edit(id=${hotel.id})}">Edit</a>
         <a class="delete-link" th:href="@{/hotel/{id}/delete(id=${hotel.id})}">Delete</a>
