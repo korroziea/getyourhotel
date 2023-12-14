@@ -5,7 +5,7 @@ import com.rubashenko.getyourhotel.domain.HotelRoom;
 import java.util.List;
 
 public interface HotelRoomService {
-    HotelRoom createHotelRoom (HotelRoom hotelRoom);
+    HotelRoom createHotelRoom(HotelRoom hotelRoom);
 //    List<HotelRoom> showAllHotelRooms(Long hotel_id);
     List<HotelRoom> showAllHotelRooms();
     HotelRoom showOneHotelRoom(Long id);

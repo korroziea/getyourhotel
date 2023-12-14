@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/hotel_form.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Booking</h2>
+    <form th:method="POST" th:action="@{/hotel/{hotel_id}/room/{room_id}/booking/create(hotel_id=${hotel_id}, room_id=${room_id})}" th:object="${booking}">
+        <label for="days_number"> Enter the number of days: </label>
+        <input type="number" th:field="*{days_number}" id="days_number" required/>
+        <br/>
+
+        <label for="nights_number"> Enter the number of nights: </label>
+        <input type="number" th:field="*{nights_number}" id="nights_number" required/>
+        <br/>
+
+        <input type="submit" value="Booking" />
+    </form>
+</div>
+</body>
+</html>
