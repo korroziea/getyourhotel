@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Payment</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/hotel_form.css}">
 </head>
 <body>
-<p>Hi!</p>
+<div class="container">
+    <h2>Payment</h2>
+    <form th:method="POST" th:action="@{/hotel/{hotel_id}/room/{room_id}/booking/{booking_id}/payment/create(hotel_id=${hotel_id}, room_id=${room_id}, booking_id=${booking_id})}" th:object="${payment}">
+        <label for="card_number"> Enter the card number: </label>
+        <input type="number" th:field="*{card_number}" id="card_number" required/>
+        <br/>
+
+        <label for="card_expiration_date"> Enter the card expiration date: </label>
+        <input type="datetime-local" th:field="*{card_expiration_date}" id="card_expiration_date" required/>
+        <br/>
+
+        <label for="card_cvv"> Enter the card cvv: </label>
+        <input type="password" th:field="*{card_cvv}" id="card_cvv" required/>
+        <br/>
+
+        <input type="submit" value="Pay" />
+    </form>
+</div>
 </body>
 </html>
