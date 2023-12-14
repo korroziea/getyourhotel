@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chart</title>
+  <!-- Подключение библиотеки Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<!-- Область, где будет отображаться график -->
+<canvas id="myChart" width="400" height="400"></canvas>
+
+<!-- Сценарий для создания графика -->
+<!--<script src="/js/chart.js"></script>-->
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  var hotelArray = /*[[${hotelArray}]]*/ [];
+  /*]]>*/
+  console.log(hotelArray)
+
+  // Получаем контекст canvas и создаем график
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
+      datasets: [{
+        label: 'Hotels',
+        data: hotelArray,
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

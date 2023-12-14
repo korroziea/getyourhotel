@@ -98,4 +98,16 @@ public class HotelResource {
         }
         return "redirect:/hotel";
     }
+
+    @GetMapping("/chart")
+    public String createRatingChart(Model model) {
+        List<Hotel> hotels = hotelService.showAllHotels();
+        Integer[] hotelArray = {0, 0, 0, 0, 0};
+        for (int i = 0; i < hotels.size(); i++) {
+            int rating = (int) Math.round(hotels.get(i).getRating());
+            hotelArray[rating - 1] += 1;
+        }
+        model.addAttribute("hotelArray", hotelArray);
+        return "hotel/chart/chart";
+    }
 }
